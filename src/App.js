@@ -10,7 +10,12 @@ class App extends Component {
     super(state)
     this.state = {
       pokeList : [],
-      pokeActive : {},
+      pokeActive : {
+        name : "Pokedex",
+        height : 0,
+        weight : 0,
+        type : "none"
+      },
       pokeTabNext : "",
       pokeTabPrevious : "",
     }
@@ -40,11 +45,12 @@ class App extends Component {
   }
 
   componentDidMount(){
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=24&offset=0`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=100&offset=0`)
       .then(res => res.json())
       .then(json => {
-        //console.log(json)
+        console.log("pokeList",json.results.length)
         var pokeList = [];
+
         json.results.map((object)=>
             fetch(`https://pokeapi.co/api/v2/pokemon/${object.name}`)
             .then(res => res.json())
@@ -73,24 +79,24 @@ class App extends Component {
                   <div className="col-6">
                     <div className="container">
                       <h1 className="display-4 text-uppercase">{this.state.pokeActive.name}</h1>
-                      <p className="lead">Height : {this.state.pokeActive.height}</p>
-                      <p className="lead">Weight : {this.state.pokeActive.weight}</p>
+                      <p className="lead">Height : {this.state.pokeActive.height} m</p>
+                      <p className="lead">Weight : {this.state.pokeActive.weight} kg</p>
                       <p className="lead">Type : {this.state.pokeActive.type}</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="row mx-0 row-cols-2 row-cols-lg-6">
+            <div className="row mx-0 row-cols-2 row-cols-lg-5">
               {
               (this.state.pokeList.length > 0 ? 
                 this.state.pokeList.map((pokemon, i) => {
                   console.log(pokemon.name)
                   return (<div className="col mb-4" key={i}>
-                    <div className="card" onClick={()=>this.pokeCallInfo(pokemon)}>
-                      <img src={pokemon.sprites.other.dream_world.front_default} className="card-img-top" alt={pokemon.name} />
+                    <div className="card text-center" onClick={()=>this.pokeCallInfo(pokemon)}>
+                      <img src={pokemon.sprites.other.dream_world.front_default} className="card-img-top mx-auto" alt={pokemon.name} />
                       <div className="card-body">
-                        <h5 className="card-title text-center text-uppercase">{pokemon.name}</h5>                        
+                        <h5 className="card-title text-uppercase">{pokemon.name}</h5>                        
                       </div>
                     </div>
                   </div>)
