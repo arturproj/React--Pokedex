@@ -1,16 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Image = ({uri, }) => {
+import icon from './../../podex.png'
 
-  return( <img src={uri} alt="..." className="img-thumbnail" /> );
+const Image = ({uri, name}) => {
+
+  return( <img src={uri} alt={name} className="img-thumbnail" /> );
 }
 
 Image.propTypes = {                              // Indicateur variable attentes
   uri: PropTypes.string, 
+  name: PropTypes.string,
 };
 Image.defaultProps = {                           // S'il n'est pas configuré, il s'initialise automatiquement
-  uri: "https://pokeres.bastionbot.org/images/pokemon/25.png",
+  uri: icon,
+  name: "pokedex",
 };
 
 export default Image;
