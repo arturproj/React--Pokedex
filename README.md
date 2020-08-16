@@ -1,4 +1,4 @@
-<img src="https://github.com/arturproj/React--Pokedex/tree/master/react-pokedex.gif" alt="Cui'zine Gif" style="max-width:100%;">
+<img src="https://github.com/arturproj/React--Pokedex/blob/master/react-pokedex.gif" alt="Cui'zine Gif" style="max-width:100%;">
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
